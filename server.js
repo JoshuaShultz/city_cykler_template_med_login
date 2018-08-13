@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 app.set('port', port);
 
 
@@ -19,4 +19,4 @@ require('./routes/allRoutes')(app);
 
 
 app.listen(port);
-console.log(`8080 is the magic port http://localhost:${port}/`);
+console.log(`${port} is the magic port http://localhost:${port}/`);
