@@ -1,10 +1,11 @@
+const authenticate = require('../middleware/authenticate');
 const db = require('../config/database').connect();
 const Cykel = require('../services/cykler');
 
 module.exports = function (app) {
 
 // READ - hent cykel
-    app.get('/admin_retCykel/:id', async (req, res) => {
+    app.get('/admin_retCykel/:id', authenticate, async (req, res) => {
         try {
             const brand = await Cykel.getBrand();
             const cykel_kat = await Cykel.getKategorier();
@@ -22,7 +23,7 @@ module.exports = function (app) {
     });
 
     // UPDATE - Redigerer en cykel
-    app.post('/admin_retCykel/update/:id', async (req, res) => {
+    app.post('/admin_retCykel/update/:id', authenticate, async (req, res) => {
         try{
             console.log(req.body);
             await Cykel.updateOne(req.params.id, req.body.brand, req.body.model, req.body.beskrivelse, req.body.pris, req.body.kategori, req.body.tilbudspris);

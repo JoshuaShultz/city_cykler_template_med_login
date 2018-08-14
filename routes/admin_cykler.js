@@ -1,8 +1,9 @@
+const authenticate = require('../middleware/authenticate');
 const db = require('../config/database').connect();
 const Cykel = require('../services/cykler');
 
 module.exports = function (app) {
-    app.get('/admin_cykler', async (req, res) => {
+    app.get('/admin_cykler', authenticate, async (req, res) => {
         try {
             const alleCykler = await Cykel.getAll();
             const brand = await Cykel.getBrand();
@@ -20,7 +21,7 @@ module.exports = function (app) {
         }
     });
 
-    app.get('/admin_cykler/delete/:id', async (req, res) => {
+    app.get('/admin_cykler/delete/:id', authenticate, async (req, res) => {
         const cykelId = req.params.id;
         console.log(cykelId);
         // res.send();
@@ -34,7 +35,7 @@ module.exports = function (app) {
         };
     });
 
-    app.post('/admin_cykler/opret', async (req, res) => {
+    app.post('/admin_cykler/opret', authenticate, async (req, res) => {
         console.log(req.body);
         const result = await Cykel.createOne(req.body.brand, req.body.billede, req.body.model, req.body.beskrivelse, req.body.pris, req.body.kategori, req.body.tilbudspris);
         if(result === true){

@@ -10,6 +10,7 @@ app.set('port', port);
 //==================================================
 require('./config/views')(app, express);
 require('./config/parsing')(app);
+require('./config/sessions')(app);
 
 
 // ROUTES
