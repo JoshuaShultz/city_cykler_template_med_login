@@ -5,4 +5,5 @@ module.exports = function (app){
     require('./admin_cykler')(app);
     require('./admin_retCykel')(app);
     require('./login')(app);
+    require('./fisk')(app);
 };

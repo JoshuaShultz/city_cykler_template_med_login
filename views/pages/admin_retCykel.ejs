@@ -76,7 +76,10 @@
     </div>
 
     <script>
-        //Get select object
+        /*Get select object*/
+        
+        /*Dette gør at når jeg skal ind og rette et produkt(en cykel) udfyldes følterne brand/mærke og kategori med den 
+        value som cyklen allerede har.*/
         var objSelect = document.getElementById("cykel_brand");
         setSelectedValue(objSelect, "<%= enCykel.fk_brand %>");
 
